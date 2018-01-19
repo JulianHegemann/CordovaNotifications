@@ -1,0 +1,5 @@
+# Ignore JetBrains things
+.idea/
+/*.iml
+*.iml
+*.iws
