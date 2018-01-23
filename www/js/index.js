@@ -1,46 +1,70 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+var options=["JA", "NEIN"];
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        console.log(navigator.notification);
-    },
+function showPrompt() {
+    navigator.notification.prompt(
+        //message
+        "Enter your name",
+        //callback
+        promptCallback(),
+        //title
+        "Prompt Notification",
+        //button labels
+        options,
+        //default text
+        "Sebastian"
+    )
+}
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+function showAlert(){
+    navigator.notification.alert(
+        'You are the winner!',  // message
+        alterCallback(),         // callback
+        'Game Over',            // title
+        'Done'                  // buttonName
+    );
+}
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+function showConfirm(){
+    navigator.notification.confirm(
+        'You are the winner!', // message
+        confirmCallback,            // callback to invoke with index of button pressed
+        'Game Over',           // title
+        ['Restart','Exit']     // buttonLabels
+    );
+}
 
-        console.log('Received Event: ' + id);
+function Combobreaker() {
+    navigator.notification.prompt(
+        "How often should i beep?",
+        beepCallback,
+        "Final",
+        ["BEEP", "I dont wanna beep... :("],
+        "10"
+    )    
+}
+
+function beepCallback(results) {
+    var buttonIndex = results.buttonIndex;
+    var input1 = results.input1;
+    if(buttonIndex==1){
+        navigator.notification.beep(Number(input1));
+    }else{
+        alert("Loser :P")
     }
-};
+}
 
-app.initialize();
+function doBeep() {
+    navigator.notification.beep(1);
+}
+
+function promptCallback() {
+    console.log("Prompt worked")
+}
+
+function alterCallback() {
+    console.log("alter worked")
+}
+
+function confirmCallback(){
+    console.log("confirm worked")
+}
