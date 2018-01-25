@@ -1,6 +1,7 @@
 # Cordova Notifications 
 ## Plugin Installation
 Um mit Cordova Notifications zu verwenden, muss das `dialog` Plugin installiert werden:
+
 `$cordova plugin add cordova-plugin-dialogs`
 
 ## Arten von Notifications
@@ -11,6 +12,7 @@ Es gibt 4 Arten von Notifications in Cordova:
 * Beeps
 
 ### Prompts
+Prompts sind Fenster die vom Nutzer eine Eingabe erfordern. Die Eingabe kann im Callback weiter verarbeitet werden.
 Beispiel:
 ```javascript
 function showPrompt() {
@@ -30,6 +32,7 @@ function showPrompt() {
 ```
 
 ### Alters
+Alerts dienen dazu den Nutzer über etwas zu informieren. Sie haben nur einen Button.
 Beispiel:
 ```javascript
 function showAlert(){
@@ -46,6 +49,7 @@ function showAlert(){
 }
 ```
 ### Confirms
+Confirms sind wie Alerts, nur das sie 2 Buttons haben.
 Beispiel:
 ```javascript
 function showConfirm(){
@@ -62,6 +66,7 @@ function showConfirm(){
 }
 ```
 ### Beeps
+Beeps erzeugen einen Signalton.
 Beispiel
 ```javascript
 function doBeep() {
